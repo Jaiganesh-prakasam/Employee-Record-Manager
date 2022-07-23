@@ -4,7 +4,7 @@ import { PagesModule } from './pages/pages.module';
 import { ValidationService } from './validation.service';
 const routes: Routes = [
   { path: '', redirectTo: 'routing/emp-list', pathMatch: 'full' },
-  { path: 'routing', loadChildren: './pages/pages.module#PagesModule' },
+  { path: 'routing', loadChildren: () => import('./pages/pages.module').then(m => m.PagesModule) },
   { path: '**', redirectTo: 'routing/emp-list', pathMatch: 'full' }
 ];
 
