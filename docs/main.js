@@ -1,5 +1,5 @@
 "use strict";
-(self["webpackChunkempRecordManager"] = self["webpackChunkempRecordManager"] || []).push([["main"],{
+(self["webpackChunkEmployee_Record_Manager"] = self["webpackChunkEmployee_Record_Manager"] || []).push([["main"],{
 
 /***/ 158:
 /*!***************************************!*\
@@ -49,7 +49,7 @@ __webpack_require__.r(__webpack_exports__);
 
 class AppComponent {
     constructor() {
-        this.title = 'empRecordManager';
+        this.title = 'Employee-Record-Manager';
     }
 }
 AppComponent.ɵfac = function AppComponent_Factory(t) { return new (t || AppComponent)(); };

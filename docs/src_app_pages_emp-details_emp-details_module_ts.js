@@ -1,4 +1,4 @@
-(self["webpackChunkempRecordManager"] = self["webpackChunkempRecordManager"] || []).push([["src_app_pages_emp-details_emp-details_module_ts"],{
+(self["webpackChunkEmployee_Record_Manager"] = self["webpackChunkEmployee_Record_Manager"] || []).push([["src_app_pages_emp-details_emp-details_module_ts"],{
 
 /***/ 7584:
 /*!************************************************************************!*\
