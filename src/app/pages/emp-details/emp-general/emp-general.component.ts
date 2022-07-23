@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { FormGroup } from '@angular/forms';
+import { UntypedFormGroup } from '@angular/forms';
 @Component({
   selector: 'app-emp-general',
   templateUrl: './emp-general.component.html',
@@ -27,7 +27,7 @@ import { FormGroup } from '@angular/forms';
 // age:
 //   - find age by  dob;
 export class EmpGeneralComponent implements OnInit {
-  @Input() form: FormGroup;
+  @Input() form: UntypedFormGroup;
   constructor(
     public empDetailsService: EmpDetailsService
   ) { }

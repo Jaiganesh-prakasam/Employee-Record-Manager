@@ -1,5 +1,5 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormControl, UntypedFormArray, Validators, UntypedFormBuilder } from '@angular/forms';
 import { ValidationService } from '../../validation.service';
 import { EmployeeFetchDetailsService } from '../../employee-fetch-details.service';
 import { EmpDetails } from '../../sharedInterface/emp-details';
@@ -7,12 +7,12 @@ import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
 @Injectable()
 export class EmpDetailsService {
-  empDetails: FormGroup;
-  empGeneral: FormGroup;
-  empContact: FormGroup;
-  socialInfo: FormArray;
-  empExperienceGroup: FormGroup;
-  empExperienceArray: FormArray;
+  empDetails: UntypedFormGroup;
+  empGeneral: UntypedFormGroup;
+  empContact: UntypedFormGroup;
+  socialInfo: UntypedFormArray;
+  empExperienceGroup: UntypedFormGroup;
+  empExperienceArray: UntypedFormArray;
   role: any[] = [
     'Junior Software Enginer',
     'Software Enginer',
@@ -21,8 +21,8 @@ export class EmpDetailsService {
   ];
   lastkeydown = 0;
   roleList = [];
-  empSkill: FormGroup;
-  empSkillArray: FormArray;
+  empSkill: UntypedFormGroup;
+  empSkillArray: UntypedFormArray;
   skillList = [
     'angular',
     'vue',
@@ -36,7 +36,7 @@ export class EmpDetailsService {
   id: number;
   errorFormArray = [];
   constructor(
-    public fB: FormBuilder,
+    public fB: UntypedFormBuilder,
     public employeeFetchDetailsService: EmployeeFetchDetailsService,
     public router: Router,
     public  datePipe: DatePipe,
@@ -118,7 +118,7 @@ export class EmpDetailsService {
     });
 
   }
-  socialInfoGroup(): FormGroup {
+  socialInfoGroup(): UntypedFormGroup {
     return this.fB.group({
       url: ['', [Validators.required, ValidationService.socialMediaUrlValidator() ]],
       type: ['', [Validators.required, ValidationService.socialMediaTypeValidator()]]
@@ -135,7 +135,7 @@ export class EmpDetailsService {
   public addExperience(): void {
     this.empExperienceArray.push( this.experienceDetails() );
   }
-  private experienceDetails(): FormGroup {
+  private experienceDetails(): UntypedFormGroup {
     return this.fB.group({
       companyName: ['', [Validators.required, Validators.min(3) , Validators.max(25)]],
       location: this.fB.group({
@@ -168,7 +168,7 @@ export class EmpDetailsService {
       this.role.push(enteredRole);
     }
   }
-  skillGroup(): FormGroup {
+  skillGroup(): UntypedFormGroup {
     return this.fB.group({
       skill: ['', [Validators.required, Validators.min(3) , Validators.max(25)]],
       rate: ['', [Validators.required, ValidationService.rating()]],
@@ -242,15 +242,15 @@ export class EmpDetailsService {
         this.router.navigate(['/routing/emp-list']);
     });
   }
-  validateAllFormFields(formGroup: FormGroup) {
+  validateAllFormFields(formGroup: UntypedFormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof FormControl) {
+      if (control instanceof UntypedFormControl) {
         control.updateValueAndValidity({ onlySelf: false, emitEvent: true });
-      } else if (control instanceof FormGroup) {
+      } else if (control instanceof UntypedFormGroup) {
         this.validateAllFormFields(control);
-      } else if (control instanceof FormArray) {
-        control.controls.forEach((elementControl: FormGroup) => {
+      } else if (control instanceof UntypedFormArray) {
+        control.controls.forEach((elementControl: UntypedFormGroup) => {
           this.validateAllFormFields(elementControl);
         });
       }

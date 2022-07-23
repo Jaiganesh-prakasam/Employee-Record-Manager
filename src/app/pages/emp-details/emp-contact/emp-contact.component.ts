@@ -1,5 +1,5 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 import { EmpDetailsService } from '../emp-details.service';
 import { ValidationService } from '../../../validation.service';
 @Component({
@@ -23,8 +23,8 @@ import { ValidationService } from '../../../validation.service';
 //   type - example  [ {"url":"facebook/jsnuggets", type:"facebook"]
 //   Validation  -  valid URL/Id , unique
 export class EmpContactComponent implements OnInit {
-  @Input() form: FormGroup;
-  @Input() socialInfoFormArray: FormArray;
+  @Input() form: UntypedFormGroup;
+  @Input() socialInfoFormArray: UntypedFormArray;
   @Output() addSocialInfo = new EventEmitter();
   @Output() deleteSocialInfo = new EventEmitter();
   constructor(public empDetailsService: EmpDetailsService) {

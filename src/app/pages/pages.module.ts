@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { RouterModule } from '@angular/router';
-const routes = [
+import { RouterModule, Routes } from '@angular/router';
+const routes: Routes = [
   {
     path: '',
     redirectTo: 'emp-list',

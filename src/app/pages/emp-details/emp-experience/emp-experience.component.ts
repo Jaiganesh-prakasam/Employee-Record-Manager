@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { FormGroup, FormArray } from '@angular/forms';
+import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 import * as moment from 'moment';
 
 @Component({
@@ -24,8 +24,8 @@ import * as moment from 'moment';
 //       if role not exist in list we have to add that skill into list
 //     - company name - Min -3  Max-25 Char, Alphabets only
 export class EmpExperienceComponent implements OnInit {
-  @Input() form: FormGroup;
-  @Input() experienceFormArray: FormArray;
+  @Input() form: UntypedFormGroup;
+  @Input() experienceFormArray: UntypedFormArray;
   @Output() addExperience = new EventEmitter();
   @Output() deleteExperience = new EventEmitter();
   @Output() getRole = new EventEmitter();
