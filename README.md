@@ -9,7 +9,7 @@ This project uses Angular 14.1.0
     
 # Demo
 
-[Please click for Demo](https://jaiganesh-prakasam.github.io/empRecordManager/routing/emp-list)
+[Please click for Demo](https://jaiganesh-prakasam.github.io/Employee-Record-Manager/routing/emp-list)
 
 # Screenshot
 
