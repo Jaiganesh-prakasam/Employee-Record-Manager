@@ -1,18 +1,31 @@
 import { Injectable, ChangeDetectorRef } from '@angular/core';
-import { UntypedFormGroup, UntypedFormControl, UntypedFormArray, Validators, UntypedFormBuilder } from '@angular/forms';
+import { FormGroup, FormControl, FormArray, Validators, FormBuilder } from '@angular/forms';
 import { ValidationService } from '../../validation.service';
 import { EmployeeFetchDetailsService } from '../../employee-fetch-details.service';
-import { EmpDetails } from '../../sharedInterface/emp-details';
+import {
+  IEmpContactFormGroup,
+  IEmpDetails,
+  IEmpDetailsFormGroup,
+  IEmpExperienceFormGroup,
+  IEmpExperienceGroup,
+  IEmpGeneralFormGroup,
+  IEmpSkillFormGroup,
+  IEmpSkillGroup,
+  ISocialInfoForm
+} from '../../sharedInterface/emp-details-type';
 import { Router } from '@angular/router';
 import { DatePipe } from '@angular/common';
+
 @Injectable()
 export class EmpDetailsService {
-  empDetails: UntypedFormGroup;
-  empGeneral: UntypedFormGroup;
-  empContact: UntypedFormGroup;
-  socialInfo: UntypedFormArray;
-  empExperienceGroup: UntypedFormGroup;
-  empExperienceArray: UntypedFormArray;
+  empDetails: FormGroup<IEmpDetailsFormGroup>;
+  empGeneral: FormGroup<IEmpGeneralFormGroup>;
+  empContact: FormGroup<IEmpContactFormGroup>;
+  socialInfo: FormArray<FormGroup<ISocialInfoForm>>;
+  empExperienceGroup: FormGroup<IEmpExperienceGroup>;
+  empExperienceArray: FormArray<FormGroup<IEmpExperienceFormGroup>>;
+  empSkill: FormGroup<IEmpSkillGroup>;
+  empSkillArray: FormArray<FormGroup<IEmpSkillFormGroup>>;
   role: any[] = [
     'Junior Software Enginer',
     'Software Enginer',
@@ -21,8 +34,6 @@ export class EmpDetailsService {
   ];
   lastkeydown = 0;
   roleList = [];
-  empSkill: UntypedFormGroup;
-  empSkillArray: UntypedFormArray;
   skillList = [
     'angular',
     'vue',
@@ -36,10 +47,10 @@ export class EmpDetailsService {
   id: number;
   errorFormArray = [];
   constructor(
-    public fB: UntypedFormBuilder,
+    public fB: FormBuilder,
     public employeeFetchDetailsService: EmployeeFetchDetailsService,
     public router: Router,
-    public  datePipe: DatePipe,
+    public datePipe: DatePipe,
     private ref: ChangeDetectorRef) {
     this.empGeneralFormInitiation();
     this.empContactFormInitiation();
@@ -53,21 +64,21 @@ export class EmpDetailsService {
         this.empGeneral.patchValue(data.empGeneral);
         // this.empContact.email.patchValue(data.empContact);
         data.empSkill.forEach((element, i) => {
-          if ( data.empSkill.length - 1 !== i) {
+          if (data.empSkill.length - 1 !== i) {
             this.addskill();
           }
         });
         this.empSkillArray.patchValue(data.empSkill);
 
         data.empExperience.forEach((element, i) => {
-          if ( data.empExperience.length - 1 !== i) {
+          if (data.empExperience.length - 1 !== i) {
             this.addExperience();
           }
         });
         this.empExperienceArray.patchValue(data.empExperience);
 
         data.empContact.socialInfo.forEach((element, i) => {
-          if ( data.empContact.socialInfo.length - 1 !== i) {
+          if (data.empContact.socialInfo.length - 1 !== i) {
             this.addSocialInfo();
           }
         });
@@ -79,8 +90,8 @@ export class EmpDetailsService {
   empGeneralFormInitiation(): void {
     this.empGeneral = this.fB.group({
       firstName: [
-        '' ,
-        [ Validators.required, Validators.minLength(3), Validators.maxLength(15), ValidationService.onlyAlphabetsValidator() ]
+        '',
+        [Validators.required, Validators.minLength(3), Validators.maxLength(15), ValidationService.onlyAlphabetsValidator()]
       ],
       lastName: [
         '',
@@ -100,17 +111,17 @@ export class EmpDetailsService {
   empExperienceFormInitiation(): void {
     this.empExperienceArray = this.fB.array([this.experienceDetails()]);
     this.empExperienceGroup = this.fB.group({
-      empExperienceArray : this.empExperienceArray
+      empExperienceArray: this.empExperienceArray
     });
   }
   empSkillFormInitiation(): void {
     this.empSkillArray = this.fB.array([this.skillGroup()]);
     this.empSkill = this.fB.group({
-      empSkillArray : this.empSkillArray
+      empSkillArray: this.empSkillArray
     });
   }
   empDetailsFormInitiation(): void {
-    this.empDetails = this.fB.group ({
+    this.empDetails = this.fB.group({
       empGeneral: this.empGeneral,
       empContact: this.empContact,
       empSkill: this.empSkillArray,
@@ -118,14 +129,14 @@ export class EmpDetailsService {
     });
 
   }
-  socialInfoGroup(): UntypedFormGroup {
+  socialInfoGroup(): FormGroup {
     return this.fB.group({
-      url: ['', [Validators.required, ValidationService.socialMediaUrlValidator() ]],
+      url: ['', [Validators.required, ValidationService.socialMediaUrlValidator()]],
       type: ['', [Validators.required, ValidationService.socialMediaTypeValidator()]]
     });
   }
   addSocialInfo(): void {
-    this.socialInfo.push( this.socialInfoGroup() );
+    this.socialInfo.push(this.socialInfoGroup());
   }
   deleteSocialInfo(index: number): void {
     if (this.socialInfo.length > 1) {
@@ -133,11 +144,11 @@ export class EmpDetailsService {
     }
   }
   public addExperience(): void {
-    this.empExperienceArray.push( this.experienceDetails() );
+    this.empExperienceArray.push(this.experienceDetails());
   }
-  private experienceDetails(): UntypedFormGroup {
+  private experienceDetails(): FormGroup {
     return this.fB.group({
-      companyName: ['', [Validators.required, Validators.min(3) , Validators.max(25)]],
+      companyName: ['', [Validators.required, Validators.min(3), Validators.max(25)]],
       location: this.fB.group({
         city: ['', [Validators.required]],
         country: ['', [Validators.required]]
@@ -146,7 +157,7 @@ export class EmpDetailsService {
       role: ['', [Validators.required]],
       fromDate: ['', [Validators.required, ValidationService.futureDate()]],
       toDate: ['', [Validators.required, ValidationService.futureDate()]],
-      experience: [{value: '', disabled: true}, [Validators.required]],
+      experience: [{ value: '', disabled: true }, [Validators.required]],
     });
   }
   deleteExperience(index: number): void {
@@ -168,14 +179,14 @@ export class EmpDetailsService {
       this.role.push(enteredRole);
     }
   }
-  skillGroup(): UntypedFormGroup {
+  skillGroup(): FormGroup {
     return this.fB.group({
-      skill: ['', [Validators.required, Validators.min(3) , Validators.max(25)]],
+      skill: ['', [Validators.required, Validators.min(3), Validators.max(25)]],
       rate: ['', [Validators.required, ValidationService.rating()]],
     });
   }
   addskill(): void {
-    this.empSkillArray.push( this.skillGroup() );
+    this.empSkillArray.push(this.skillGroup());
   }
   deleteSkill(index): void {
     if (this.empSkillArray.length > 1) {
@@ -186,7 +197,7 @@ export class EmpDetailsService {
     const enteredSkill = this.empSkillArray.controls[index].get('skill').value;
     this.skillListOptions = [];
     if (enteredSkill.length > 2) {
-        this.skillListOptions = this.searchFromArray(this.skillList, enteredSkill);
+      this.skillListOptions = this.searchFromArray(this.skillList, enteredSkill);
     }
   }
   storeNewSkill(index): void {
@@ -209,13 +220,13 @@ export class EmpDetailsService {
     let count = 0;
     if (this.empGeneral.invalid) {
       this.errorFormArray.push('Employee general detils invalid');
-      count ++;
+      count++;
     }
     if (
       this.empContact.get('email').invalid ||
       this.empContact.get('phone').invalid ||
       this.socialInfo.invalid
-      ) {
+    ) {
       this.errorFormArray.push('Employee contacts invalid');
       count++;
     }
@@ -237,20 +248,20 @@ export class EmpDetailsService {
     if (this.id) {
       this.empDetails.value.id = this.id;
     }
-    this.empDetails.value.empGeneral.dob = this.datePipe.transform(this.empDetails.value.empGeneral.dob, 'yyyy-MM-dd' );
-    this.employeeFetchDetailsService.addEmployee(this.empDetails.value as EmpDetails).subscribe(employee => {
-        this.router.navigate(['/routing/emp-list']);
+    this.empDetails.value.empGeneral.dob = this.datePipe.transform(this.empDetails.value.empGeneral.dob, 'yyyy-MM-dd');
+    this.employeeFetchDetailsService.addEmployee(this.empDetails.value as IEmpDetails).subscribe(employee => {
+      this.router.navigate(['/routing/emp-list']);
     });
   }
-  validateAllFormFields(formGroup: UntypedFormGroup) {
+  validateAllFormFields(formGroup: FormGroup) {
     Object.keys(formGroup.controls).forEach(field => {
       const control = formGroup.get(field);
-      if (control instanceof UntypedFormControl) {
+      if (control instanceof FormControl) {
         control.updateValueAndValidity({ onlySelf: false, emitEvent: true });
-      } else if (control instanceof UntypedFormGroup) {
+      } else if (control instanceof FormGroup) {
         this.validateAllFormFields(control);
-      } else if (control instanceof UntypedFormArray) {
-        control.controls.forEach((elementControl: UntypedFormGroup) => {
+      } else if (control instanceof FormArray) {
+        control.controls.forEach((elementControl: FormGroup) => {
           this.validateAllFormFields(elementControl);
         });
       }

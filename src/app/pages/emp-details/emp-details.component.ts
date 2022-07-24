@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpDetailsService } from './emp-details.service';
-import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-emp-details',
   templateUrl: './emp-details.component.html',
@@ -9,25 +9,25 @@ import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
   providers: [ EmpDetailsService ]
 })
 export class EmpDetailsComponent implements OnInit {
-  get empGeneralFormGroup(): UntypedFormGroup {
+  get empGeneralFormGroup(): FormGroup {
     return this.empDetailsService.empGeneral;
   }
-  get empContactFormGroup(): UntypedFormGroup {
+  get empContactFormGroup(): FormGroup {
     return this.empDetailsService.empContact;
   }
-  get empSocialInfoFormArray(): UntypedFormArray {
+  get empSocialInfoFormArray(): FormArray {
     return this.empDetailsService.socialInfo;
   }
-  get empExperienceFormGroup(): UntypedFormGroup {
+  get empExperienceFormGroup(): FormGroup {
     return this.empDetailsService.empExperienceGroup;
   }
-  get empExperienceFormArray(): UntypedFormArray {
+  get empExperienceFormArray(): FormArray {
     return this.empDetailsService.empExperienceArray;
   }
-  get empSkillFormGroup(): UntypedFormGroup {
+  get empSkillFormGroup(): FormGroup {
     return this.empDetailsService.empSkill;
   }
-  get empSkillFormArray(): UntypedFormArray {
+  get empSkillFormArray(): FormArray {
     return this.empDetailsService.empSkillArray;
   }
   stepsData = [

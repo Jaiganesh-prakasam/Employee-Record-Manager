@@ -1,6 +1,5 @@
 import { Component, OnInit, Input, AfterViewInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
-import { EmpDetails } from '../../sharedInterface/emp-details';
-import { LowerCasePipe } from '@angular/common';
+import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { PaginationContainerComponent } from './pagination-container/pagination-container.component';
 import { ITableSharedFunctionService } from './i-table-shared-function.service';
 @Component({
@@ -14,12 +13,12 @@ import { ITableSharedFunctionService } from './i-table-shared-function.service';
  * @settings - headers, content level in the object
  */
 export class ITableComponent implements OnInit, AfterViewInit, OnChanges {
-  @Input()tableData: EmpDetails[];
+  @Input()tableData: IEmpDetails[];
   @Input()settings: any;
   @ViewChild(PaginationContainerComponent) private containerComponent: PaginationContainerComponent;
-  localTableData: EmpDetails[];
-  tempDataTable: EmpDetails[];
-  filterTableData: EmpDetails[];
+  localTableData: IEmpDetails[];
+  tempDataTable: IEmpDetails[];
+  filterTableData: IEmpDetails[];
   startEndArrayState: number[];
   tableLength: number;
   constructor(private iTableSharedFunctionService: ITableSharedFunctionService) { }

@@ -4,9 +4,7 @@ import {
   Input,
   AfterViewInit,
   Output,
-  EventEmitter,
-  ViewChildren,
-  QueryList
+  EventEmitter
 } from '@angular/core';
 
 @Component({

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
+import { FormGroup, FormArray } from '@angular/forms';
 @Component({
   selector: 'app-emp-skill',
   templateUrl: './emp-skill.component.html',
@@ -18,8 +18,8 @@ import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 // Total Year of Experience:
 //   Calculate from  work experiences
 export class EmpSkillComponent implements OnInit {
-  @Input()form: UntypedFormGroup;
-  @Input()skillFormArray: UntypedFormArray;
+  @Input()form: FormGroup;
+  @Input()skillFormArray: FormArray;
   @Output()addSkill = new EventEmitter();
   @Output()deleteSkill = new EventEmitter();
   @Output()getSkill = new EventEmitter();

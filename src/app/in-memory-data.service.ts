@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { InMemoryDbService } from 'angular-in-memory-web-api';
-import { EmpDetails } from './sharedInterface/emp-details';
+import { IEmpDetails } from './sharedInterface/emp-details-type';
 
 @Injectable({
   providedIn: 'root',
@@ -969,7 +969,7 @@ export class InMemoryDataService implements InMemoryDbService {
   // the method below returns the initial number (11).
   // if the heroes array is not empty, the method below returns the highest
   // hero id + 1.
-  genId(heroes: EmpDetails[]): number {
+  genId(heroes: IEmpDetails[]): number {
     return heroes.length > 0
       ? Math.max(...heroes.map((hero) => hero.id)) + 1
       : 1;
