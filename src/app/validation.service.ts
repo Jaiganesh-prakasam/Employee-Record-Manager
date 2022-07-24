@@ -79,7 +79,7 @@ export class ValidationService {
       return rateValue <= 10 ? null : {rateGreaterThanTen: true};
     };
   }
-  public getValidatorErrorMessage(validatorName: string, validatorValue?: any) {
+  public getValidatorErrorMessage(validatorName: string, validatorValue?: any): string {
     const config = {
       required: 'Required',
       pattern: 'not a required pattern',

@@ -1,5 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, ContentChildren, QueryList } from '@angular/core';
-import { IWizardStepsComponent } from './i-wizard-steps/i-wizard-steps.component';
+import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
 import { IWizardService } from './i-wizard.service';
 @Component({
   // tslint:disable-next-line: component-selector

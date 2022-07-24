@@ -1,6 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { FormGroup, UntypedFormControl } from '@angular/forms';
-import { Observable } from 'rxjs/internal/Observable';
+import { UntypedFormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidationService } from '../../validation.service';
 @Component({

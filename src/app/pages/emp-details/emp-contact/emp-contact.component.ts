@@ -1,7 +1,6 @@
 import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { UntypedFormGroup, UntypedFormArray } from '@angular/forms';
 import { EmpDetailsService } from '../emp-details.service';
-import { ValidationService } from '../../../validation.service';
 @Component({
   selector: 'app-emp-contact',
   templateUrl: './emp-contact.component.html',
