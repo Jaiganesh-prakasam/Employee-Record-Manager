@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { EmployeeFetchDetailsService } from '../../employee-fetch-details.service';
-import { EmpDetails } from '../../sharedInterface/emp-details';
+import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { Router } from '@angular/router';
 @Component({
   selector: 'app-emp-list',
@@ -8,7 +8,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./emp-list.component.scss']
 })
 export class EmpListComponent implements OnInit {
-  employees: EmpDetails[];
+  employees: IEmpDetails[];
   employeesSettings = {
     fieldDefinition: [
       {

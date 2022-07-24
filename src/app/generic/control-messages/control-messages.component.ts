@@ -1,5 +1,5 @@
 import { Component, Input, OnInit, OnDestroy } from '@angular/core';
-import { UntypedFormControl } from '@angular/forms';
+import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidationService } from '../../validation.service';
 @Component({
@@ -12,7 +12,7 @@ export class ControlMessagesComponent implements OnInit, OnDestroy {
   errors = new Set<string>();
   errorObject = new Object();
   private sub: Subscription;
-  @Input() set control(con: UntypedFormControl) {
+  @Input() set control(con: FormControl) {
     this.sub = con.statusChanges.subscribe((value) => {
       if (con.errors) {
         for (const [key, value1] of Object.entries(con.errors)) {
