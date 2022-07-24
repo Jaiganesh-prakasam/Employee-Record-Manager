@@ -986,13 +986,13 @@ class EmpDetailsService {
     validateAllFormFields(formGroup) {
         Object.keys(formGroup.controls).forEach(field => {
             const control = formGroup.get(field);
-            if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.UntypedFormControl) {
+            if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormControl) {
                 control.updateValueAndValidity({ onlySelf: false, emitEvent: true });
             }
-            else if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.UntypedFormGroup) {
+            else if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormGroup) {
                 this.validateAllFormFields(control);
             }
-            else if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.UntypedFormArray) {
+            else if (control instanceof _angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormArray) {
                 control.controls.forEach((elementControl) => {
                     this.validateAllFormFields(elementControl);
                 });
@@ -1000,7 +1000,7 @@ class EmpDetailsService {
         });
     }
 }
-EmpDetailsService.ɵfac = function EmpDetailsService_Factory(t) { return new (t || EmpDetailsService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_forms__WEBPACK_IMPORTED_MODULE_2__.UntypedFormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_employee_fetch_details_service__WEBPACK_IMPORTED_MODULE_1__.EmployeeFetchDetailsService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_5__.DatePipe), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_3__.ChangeDetectorRef)); };
+EmpDetailsService.ɵfac = function EmpDetailsService_Factory(t) { return new (t || EmpDetailsService)(_angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_forms__WEBPACK_IMPORTED_MODULE_2__.FormBuilder), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_employee_fetch_details_service__WEBPACK_IMPORTED_MODULE_1__.EmployeeFetchDetailsService), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_router__WEBPACK_IMPORTED_MODULE_4__.Router), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_common__WEBPACK_IMPORTED_MODULE_5__.DatePipe), _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵinject"](_angular_core__WEBPACK_IMPORTED_MODULE_3__.ChangeDetectorRef)); };
 EmpDetailsService.ɵprov = /*@__PURE__*/ _angular_core__WEBPACK_IMPORTED_MODULE_3__["ɵɵdefineInjectable"]({ token: EmpDetailsService, factory: EmpDetailsService.ɵfac });
 
 
