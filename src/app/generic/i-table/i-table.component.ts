@@ -12,7 +12,7 @@ import { ITableSharedFunctionService } from './i-table-shared-function.service';
  * @tableData - Array of objects
  * @settings - headers, content level in the object
  */
-export class ITableComponent implements OnInit, AfterViewInit, OnChanges {
+export class ITableComponent implements OnChanges {
   @Input()tableData: IEmpDetails[];
   @Input()settings: any;
   @ViewChild(PaginationContainerComponent) private containerComponent: PaginationContainerComponent;
@@ -29,10 +29,7 @@ export class ITableComponent implements OnInit, AfterViewInit, OnChanges {
       this.arrayRange(this.startEndArrayState, 'fromFilter');
     }
   }
-  ngOnInit(): void {
 
-  }
-  ngAfterViewInit(): void {}
   /**
    * Function triggered intially by output event from the child component
    * Function is also triggered after applying filter to the data

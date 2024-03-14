@@ -7,7 +7,7 @@ import { Router } from '@angular/router';
   templateUrl: './emp-list.component.html',
   styleUrls: ['./emp-list.component.scss']
 })
-export class EmpListComponent implements OnInit {
+export class EmpListComponent {
   employees: IEmpDetails[];
   employeesSettings = {
     fieldDefinition: [
@@ -57,8 +57,6 @@ export class EmpListComponent implements OnInit {
       this.fetchEmployee();
   }
 
-  ngOnInit(): void {
-  }
   fetchEmployee(): void {
     this.employeeFetchDetailsService.getEmployees()
     .subscribe(employees => {

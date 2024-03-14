@@ -8,12 +8,12 @@ import {
 } from '@angular/core';
 
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'i-wizard-steps',
   templateUrl: './i-wizard-steps.component.html',
   styleUrls: ['./i-wizard-steps.component.scss']
 })
-export class IWizardStepsComponent implements OnInit, AfterViewInit {
+export class IWizardStepsComponent {
   @Input() isFirst: boolean;
   @Input() isLast: boolean;
   @Input() stepName: string;
@@ -22,10 +22,6 @@ export class IWizardStepsComponent implements OnInit, AfterViewInit {
   @Output() previous = new EventEmitter();
   constructor() { }
 
-  ngOnInit(): void {
-  }
-  ngAfterViewInit(): void {
-  }
   previousPage() {
     this.previous.emit();
   }
