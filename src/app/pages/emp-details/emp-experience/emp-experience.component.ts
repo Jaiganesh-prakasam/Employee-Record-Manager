@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
 import { FormGroup, FormArray } from '@angular/forms';
 import * as moment from 'moment';
@@ -23,7 +23,7 @@ import * as moment from 'moment';
 //     - Role field must be an auto complete search
 //       if role not exist in list we have to add that skill into list
 //     - company name - Min -3  Max-25 Char, Alphabets only
-export class EmpExperienceComponent implements OnInit {
+export class EmpExperienceComponent {
   @Input() form: FormGroup;
   @Input() experienceFormArray: FormArray;
   @Output() addExperience = new EventEmitter();
@@ -34,9 +34,6 @@ export class EmpExperienceComponent implements OnInit {
     public empDetailsService: EmpDetailsService
   ) {
 
-  }
-
-  ngOnInit(): void {
   }
 
   experienceCalculation(from , to) {
