@@ -29,6 +29,7 @@ export class ITableComponent implements OnChanges {
       this.arrayRange(this.startEndArrayState, 'fromFilter');
     }
   }
+
   /**
    * Function triggered intially by output event from the child component
    * Function is also triggered after applying filter to the data
