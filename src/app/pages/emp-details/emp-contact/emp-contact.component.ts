@@ -21,15 +21,12 @@ import { EmpDetailsService } from '../emp-details.service';
 //   - minimum one URL Required
 //   type - example  [ {"url":"facebook/jsnuggets", type:"facebook"]
 //   Validation  -  valid URL/Id , unique
-export class EmpContactComponent implements OnInit {
+export class EmpContactComponent {
   @Input() form: FormGroup;
   @Input() socialInfoFormArray: FormArray;
   @Output() addSocialInfo = new EventEmitter();
   @Output() deleteSocialInfo = new EventEmitter();
   constructor(public empDetailsService: EmpDetailsService) {
    }
-
-  ngOnInit(): void {
-  }
 
 }
