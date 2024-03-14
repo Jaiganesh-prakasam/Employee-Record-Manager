@@ -3,12 +3,12 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidationService } from '../../validation.service';
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'control-messages',
   templateUrl: './control-messages.component.html',
   styleUrls: ['./control-messages.component.scss']
 })
-export class ControlMessagesComponent implements OnInit, OnDestroy {
+export class ControlMessagesComponent implements OnDestroy {
   errors = new Set<string>();
   errorObject = new Object();
   private sub: Subscription;
@@ -41,8 +41,6 @@ export class ControlMessagesComponent implements OnInit, OnDestroy {
   }
     constructor(public validationService: ValidationService) { }
 
-    ngOnInit(): void {
-    }
     ngOnDestroy(): void {
       this.sub.unsubscribe();
     }
