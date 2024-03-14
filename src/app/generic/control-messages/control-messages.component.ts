@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnDestroy } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidationService } from '../../validation.service';

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { EmployeeFetchDetailsService } from '../../employee-fetch-details.service';
 import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { Router } from '@angular/router';

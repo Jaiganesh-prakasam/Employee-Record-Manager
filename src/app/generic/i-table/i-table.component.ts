@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
+import { Component, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/core';
 import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { PaginationContainerComponent } from './pagination-container/pagination-container.component';
 import { ITableSharedFunctionService } from './i-table-shared-function.service';

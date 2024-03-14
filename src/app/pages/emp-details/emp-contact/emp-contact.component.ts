@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { FormGroup, FormArray } from '@angular/forms';
 import { EmpDetailsService } from '../emp-details.service';
 @Component({
@@ -28,5 +28,4 @@ export class EmpContactComponent {
   @Output() deleteSocialInfo = new EventEmitter();
   constructor(public empDetailsService: EmpDetailsService) {
    }
-
 }

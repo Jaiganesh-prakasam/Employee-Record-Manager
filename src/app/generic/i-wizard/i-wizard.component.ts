@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { IWizardService } from './i-wizard.service';
 @Component({
   // eslint-disable-next-line @angular-eslint/component-selector
