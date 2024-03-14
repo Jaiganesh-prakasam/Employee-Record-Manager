@@ -26,14 +26,12 @@ import { FormGroup } from '@angular/forms';
 //     Required, must be a valid date( >18, <80);
 // age:
 //   - find age by  dob;
-export class EmpGeneralComponent implements OnInit {
+export class EmpGeneralComponent {
   @Input() form: FormGroup;
   constructor(
     public empDetailsService: EmpDetailsService
   ) { }
 
-  ngOnInit(): void {
-  }
   ageCalculation(date: string): number {
     if (date) {
       const dob = new Date(date);
