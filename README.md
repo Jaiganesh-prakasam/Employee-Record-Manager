@@ -11,7 +11,7 @@ This project was first created on Angular 9 and upgraded twice first to Angular 
     
 # Demo
 
-[Please click for Demo](https://jaiganesh-prakasam.github.io/Employee-Record-Manager/routing/emp-list)
+[Please click for Demo](https://jaiganesh-prakasam.github.io/Employee-Record-Manager/)
 
 # Screenshot
 
