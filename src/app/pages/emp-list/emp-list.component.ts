@@ -2,10 +2,13 @@ import { Component } from '@angular/core';
 import { EmployeeFetchDetailsService } from '../../employee-fetch-details.service';
 import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { Router } from '@angular/router';
+import { ITableComponent } from 'src/app/generic/i-table/i-table.component';
 @Component({
-  selector: 'app-emp-list',
-  templateUrl: './emp-list.component.html',
-  styleUrls: ['./emp-list.component.scss']
+    selector: 'app-emp-list',
+    templateUrl: './emp-list.component.html',
+    styleUrls: ['./emp-list.component.scss'],
+    imports: [ITableComponent],
+    standalone: true
 })
 export class EmpListComponent {
   employees: IEmpDetails[];

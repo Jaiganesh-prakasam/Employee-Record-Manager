@@ -2,11 +2,14 @@ import { Component, Input, ViewChild, OnChanges, SimpleChanges } from '@angular/
 import { IEmpDetails } from '../../sharedInterface/emp-details-type';
 import { PaginationContainerComponent } from './pagination-container/pagination-container.component';
 import { ITableSharedFunctionService } from './i-table-shared-function.service';
+import { TableContainerComponent } from './table-container/table-container.component';
 @Component({
-  selector: 'app-i-table',
-  templateUrl: './i-table.component.html',
-  styleUrls: ['./i-table.component.scss'],
-  providers: [ITableSharedFunctionService]
+    selector: 'app-i-table',
+    templateUrl: './i-table.component.html',
+    styleUrls: ['./i-table.component.scss'],
+    providers: [ITableSharedFunctionService],
+    imports: [PaginationContainerComponent, TableContainerComponent],
+    standalone: true
 })
 /**
  * @tableData - Array of objects

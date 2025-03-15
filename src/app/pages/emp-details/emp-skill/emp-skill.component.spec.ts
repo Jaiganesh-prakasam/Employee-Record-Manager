@@ -8,8 +8,8 @@ describe('EmpSkillComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ EmpSkillComponent ]
-    })
+    imports: [EmpSkillComponent]
+})
     .compileComponents();
   }));
 

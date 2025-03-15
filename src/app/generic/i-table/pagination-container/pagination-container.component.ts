@@ -8,16 +8,17 @@ import {
 import { ITableSharedFunctionService } from '../i-table-shared-function.service';
 
 @Component({
-  selector: 'app-pagination-container',
-  templateUrl: './pagination-container.component.html',
-  styleUrls: ['./pagination-container.component.scss']
+    selector: 'app-pagination-container',
+    templateUrl: './pagination-container.component.html',
+    styleUrls: ['./pagination-container.component.scss'],
+    standalone: true
 })
 export class PaginationContainerComponent implements AfterViewInit {
   @Input()totalRecordsSize: number;
   @Input()numberOfRows: string;
   @Output()itemFromTo = new EventEmitter();
   @Output()searchString = new EventEmitter();
-  totalDivisions;
+  totalDivisions = [];
   pageNumberSelected: number;
   initialLoad = true;
   constructor(public iTableSharedFunctionService: ITableSharedFunctionService) {

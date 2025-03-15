@@ -6,10 +6,11 @@ import {
 } from '@angular/core';
 
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'i-wizard-steps',
-  templateUrl: './i-wizard-steps.component.html',
-  styleUrls: ['./i-wizard-steps.component.scss']
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'i-wizard-steps',
+    templateUrl: './i-wizard-steps.component.html',
+    styleUrls: ['./i-wizard-steps.component.scss'],
+    standalone: true
 })
 export class IWizardStepsComponent {
   @Input() isFirst: boolean;

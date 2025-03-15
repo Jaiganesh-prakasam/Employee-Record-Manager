@@ -8,8 +8,8 @@ describe('ControlMessagesComponent', () => {
 
   beforeEach(waitForAsync(() => {
     TestBed.configureTestingModule({
-      declarations: [ ControlMessagesComponent ]
-    })
+    imports: [ControlMessagesComponent]
+})
     .compileComponents();
   }));
 

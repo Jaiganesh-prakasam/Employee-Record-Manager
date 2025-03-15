@@ -2,11 +2,24 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { EmpDetailsService } from './emp-details.service';
 import { FormGroup, FormArray } from '@angular/forms';
+import { EmpExperienceComponent } from './emp-experience/emp-experience.component';
+import { EmpSkillComponent } from './emp-skill/emp-skill.component';
+import { EmpContactComponent } from './emp-contact/emp-contact.component';
+import { EmpGeneralComponent } from './emp-general/emp-general.component';
+import { IWizardComponent } from 'src/app/generic/i-wizard/i-wizard.component';
 @Component({
-  selector: 'app-emp-details',
-  templateUrl: './emp-details.component.html',
-  styleUrls: ['./emp-details.component.scss'],
-  providers: [ EmpDetailsService ]
+    selector: 'app-emp-details',
+    templateUrl: './emp-details.component.html',
+    styleUrls: ['./emp-details.component.scss'],
+    imports: [
+      EmpGeneralComponent,
+      EmpContactComponent,
+      EmpSkillComponent,
+      EmpExperienceComponent,
+      IWizardComponent,
+    ],
+    providers: [EmpDetailsService],
+    standalone: true
 })
 export class EmpDetailsComponent implements OnInit {
   get empGeneralFormGroup(): FormGroup {

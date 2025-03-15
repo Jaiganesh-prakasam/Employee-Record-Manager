@@ -3,10 +3,11 @@ import { FormControl } from '@angular/forms';
 import { Subscription } from 'rxjs/internal/Subscription';
 import { ValidationService } from '../../validation.service';
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'control-messages',
-  templateUrl: './control-messages.component.html',
-  styleUrls: ['./control-messages.component.scss']
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'control-messages',
+    templateUrl: './control-messages.component.html',
+    styleUrls: ['./control-messages.component.scss'],
+    standalone: true
 })
 export class ControlMessagesComponent implements OnDestroy {
   errors = new Set<string>();

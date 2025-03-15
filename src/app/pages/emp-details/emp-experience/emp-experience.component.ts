@@ -1,12 +1,18 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 import moment from 'moment';
+import { ControlMessagesComponent } from 'src/app/generic/control-messages/control-messages.component';
 
 @Component({
-  selector: 'app-emp-experience',
-  templateUrl: './emp-experience.component.html',
-  styleUrls: ['./emp-experience.component.scss']
+    selector: 'app-emp-experience',
+    templateUrl: './emp-experience.component.html',
+    styleUrls: ['./emp-experience.component.scss'],
+    imports: [
+      ControlMessagesComponent,
+      ReactiveFormsModule
+    ],
+    standalone: true
 })
 // Work Experience Info
 // --------------------
