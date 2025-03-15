@@ -71,18 +71,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "Employee-Record-Manager:build"
+            "buildTarget": "Employee-Record-Manager:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "Employee-Record-Manager:build:production"
+              "buildTarget": "Employee-Record-Manager:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "Employee-Record-Manager:build"
+            "buildTarget": "Employee-Record-Manager:build"
           }
         },
         "test": {
