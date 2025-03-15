@@ -1,7 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
 import { FormGroup, FormArray } from '@angular/forms';
-import * as moment from 'moment';
+import moment from 'moment';
 
 @Component({
   selector: 'app-emp-experience',
