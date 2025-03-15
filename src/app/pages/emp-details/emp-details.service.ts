@@ -18,6 +18,7 @@ import { DatePipe } from '@angular/common';
 
 @Injectable()
 export class EmpDetailsService {
+  private datePipe = new DatePipe('en-IN');
   empDetails: FormGroup<IEmpDetailsFormGroup>;
   empGeneral: FormGroup<IEmpGeneralFormGroup>;
   empContact: FormGroup<IEmpContactFormGroup>;
@@ -50,7 +51,6 @@ export class EmpDetailsService {
     public fB: FormBuilder,
     public employeeFetchDetailsService: EmployeeFetchDetailsService,
     public router: Router,
-    public datePipe: DatePipe,
     private ref: ChangeDetectorRef) {
     this.empGeneralFormInitiation();
     this.empContactFormInitiation();

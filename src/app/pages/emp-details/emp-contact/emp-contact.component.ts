@@ -1,10 +1,16 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { EmpDetailsService } from '../emp-details.service';
+import { ControlMessagesComponent } from 'src/app/generic/control-messages/control-messages.component';
 @Component({
-  selector: 'app-emp-contact',
-  templateUrl: './emp-contact.component.html',
-  styleUrls: ['./emp-contact.component.scss']
+    selector: 'app-emp-contact',
+    templateUrl: './emp-contact.component.html',
+    styleUrls: ['./emp-contact.component.scss'],
+    imports: [
+      ControlMessagesComponent,
+      ReactiveFormsModule
+    ],
+    standalone: true
 })
 // Contact Info
 // ------------

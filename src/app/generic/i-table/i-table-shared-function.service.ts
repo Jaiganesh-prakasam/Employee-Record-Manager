@@ -1,10 +1,10 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { v4 as uuidv4 } from 'uuid';
 @Injectable()
 export class ITableSharedFunctionService {
+  private datePipe = new DatePipe('en-IN');
   uuid = uuidv4();
-  constructor(private datePipe: DatePipe) { }
   mutiValueCombination(
     data: object,
     fieldArray: string[][],

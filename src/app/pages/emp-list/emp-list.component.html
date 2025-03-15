@@ -1,8 +1,10 @@
-<div class="emp-list-update-delete" >
-  <select name="emp-list" #empList >
-    <option *ngFor="let employee  of this.employees" value={{employee.id}}>
+<div class="emp-list-update-delete">
+  <select name="emp-list" #empList>
+    @for (employee of employees; track $index) {
+    <option value={{employee.id}}>
       {{employee.id}} {{ ' ' + employee.empGeneral.firstName}} {{ ' ' + employee.empGeneral.lastName}}
     </option>
+    }
   </select>
   <button (click)="updateEmployee(empList.value)">
     Update Employee
@@ -11,8 +13,8 @@
     Delete Employee
   </button>
 </div>
-  <button class="emp-list-add" (click)="addEmployee()">
-    Add Employee
-  </button>
-  Employee Table:
+<button class="emp-list-add" (click)="addEmployee()">
+  Add Employee
+</button>
+Employee Table:
 <app-i-table [tableData]="employees" [settings]="employeesSettings"> </app-i-table>

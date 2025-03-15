@@ -1,10 +1,16 @@
 import { Component, Input } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { FormGroup } from '@angular/forms';
+import { FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { ControlMessagesComponent } from 'src/app/generic/control-messages/control-messages.component';
 @Component({
-  selector: 'app-emp-general',
-  templateUrl: './emp-general.component.html',
-  styleUrls: ['./emp-general.component.scss']
+    selector: 'app-emp-general',
+    templateUrl: './emp-general.component.html',
+    styleUrls: ['./emp-general.component.scss'],
+    imports: [
+      ControlMessagesComponent,
+      ReactiveFormsModule,
+    ],
+    standalone: true
 })
 // General Info
 // ------------

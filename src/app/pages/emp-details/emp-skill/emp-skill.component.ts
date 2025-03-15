@@ -1,10 +1,17 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
-import { FormGroup, FormArray } from '@angular/forms';
+import { FormGroup, FormArray, FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ControlMessagesComponent } from 'src/app/generic/control-messages/control-messages.component';
+import { CommonModule } from '@angular/common';
 @Component({
-  selector: 'app-emp-skill',
-  templateUrl: './emp-skill.component.html',
-  styleUrls: ['./emp-skill.component.scss']
+    selector: 'app-emp-skill',
+    templateUrl: './emp-skill.component.html',
+    styleUrls: ['./emp-skill.component.scss'],
+    imports: [
+      ControlMessagesComponent,
+      ReactiveFormsModule
+    ],
+    standalone: true
 })
 // Skill Info
 // ------------

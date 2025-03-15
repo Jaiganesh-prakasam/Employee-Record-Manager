@@ -1,11 +1,15 @@
 import { Component, Input, AfterViewInit } from '@angular/core';
 import { IWizardService } from './i-wizard.service';
+import { IWizardStepsComponent } from './i-wizard-steps/i-wizard-steps.component';
+import { CommonModule } from '@angular/common';
 @Component({
-  // eslint-disable-next-line @angular-eslint/component-selector
-  selector: 'i-wizard',
-  templateUrl: './i-wizard.component.html',
-  styleUrls: ['./i-wizard.component.scss'],
-  providers: [IWizardService]
+    // eslint-disable-next-line @angular-eslint/component-selector
+    selector: 'i-wizard',
+    templateUrl: './i-wizard.component.html',
+    styleUrls: ['./i-wizard.component.scss'],
+    imports: [IWizardStepsComponent, CommonModule],
+    providers: [IWizardService],
+    standalone: true
 })
 export class IWizardComponent implements AfterViewInit {
   @Input() selectedStep: string;

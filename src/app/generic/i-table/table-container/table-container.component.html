@@ -1,15 +1,26 @@
-<table class ="table-data" *ngIf="settings && tableData">
+@if (settings && tableData) {
+<table class="table-data">
   <tr>
-    <th  *ngFor="let definition of settings.fieldDefinition" >
+    @for (definition of settings.fieldDefinition; track definition) {
+    <th>
       {{definition.heading}}
     </th>
+    }
   </tr>
-  <tr *ngFor="let data of tableData ; let i  = index">
-    <td *ngFor="let definition of settings.fieldDefinition">
-      {{iTableSharedFunctionService.mutiValueCombination(data,definition.contentArray, definition.type, definition.callMethod)}}
+  @for (data of tableData; track data.id; let i = $index) {
+  <tr>
+    @for (definition of settings.fieldDefinition; track $index) {
+    <td>
+      {{iTableSharedFunctionService.mutiValueCombination(data,definition.contentArray, definition.type,
+      definition.callMethod)}}
     </td>
+    }
   </tr>
+  }
 </table>
-<div class="no-data" *ngIf="tableData && tableData.length === 0">
+}
+@if (tableData && tableData.length === 0) {
+<div class="no-data">
   No data to display
 </div>
+}

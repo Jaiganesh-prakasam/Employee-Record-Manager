@@ -3,21 +3,18 @@
 </h1>
 <form [formGroup]="form">
   <ng-container formArrayName="empSkillArray">
-    <section *ngFor="let _ of skillFormArray.controls; index as i" class="emp-skill-card">
-      <ng-container [formGroupName]="i"  >
+    @for (_ of skillFormArray.controls; track $index; let i = $index) {
+    <section class="emp-skill-card">
+      <ng-container [formGroupName]="i">
         <label>
           skill:
         </label>
-        <input
-          type="text"
-          formControlName="skill"
-          (keyup)="getSkill.emit(i)"
-          id="skill"
-          list="dynmic-skills"
-          autocomplete="off"
-          (blur)="storeNewSkill.emit(i)">
+        <input type="text" formControlName="skill" (keyup)="getSkill.emit(i)" id="skill" list="dynmic-skills"
+          autocomplete="off" (blur)="storeNewSkill.emit(i)">
         <datalist id="dynmic-skills">
-          <option *ngFor="let item of empDetailsService.skillListOptions" [value]="item">{{item}}</option>
+          @for (item of empDetailsService.skillListOptions; track $index) {
+          <option [value]="item">{{item}}</option>
+          }
         </datalist>
         <control-messages [control]="skillFormArray.controls[i].get('skill')"></control-messages>
         <label>
@@ -27,17 +24,22 @@
         <control-messages [control]="skillFormArray.controls[i].get('rate')"></control-messages>
       </ng-container>
       <div class="emp-skill-button">
-        <button *ngIf="skillFormArray.controls.length > 1" (click)="deleteSkill.emit(i)">remove</button>
+        @if (skillFormArray.controls.length > 1) {
+        <button (click)="deleteSkill.emit(i)">remove</button>
+        }
       </div>
     </section>
+    }
   </ng-container>
 </form>
 <div class="emp-skill-button">
   <button (click)="addSkill.emit()">Add skill</button>
 </div>
-<div *ngFor="let i of empDetailsService.errorFormArray">
+@for (i of empDetailsService.errorFormArray; track $index) {
+<div>
   {{i}}
 </div>
+}
 <div class="emp-skill-button emp-skill-button-center">
   <button (click)="empDetailsService.formValidation()"> Submit </button>
 </div>
