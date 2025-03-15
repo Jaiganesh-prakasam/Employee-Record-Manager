@@ -1,6 +1,8 @@
 # Employee Record Manager
 
-This project uses Angular 14.1.0
+This project uses Angular 19.2.2
+
+This project was first created on Angular 9 and upgraded twice first to Angular 14 and the latest update was to ver Angular 19.
 
 ## A CRUD sample application.
 * Features:
