@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
+import { Component, Input, Output, EventEmitter } from '@angular/core';
 import { EmpDetailsService } from '../emp-details.service';
 import { FormGroup, FormArray } from '@angular/forms';
 @Component({
@@ -17,7 +17,7 @@ import { FormGroup, FormArray } from '@angular/forms';
 //     - Validation  -  valid URL/Id
 // Total Year of Experience:
 //   Calculate from  work experiences
-export class EmpSkillComponent implements OnInit {
+export class EmpSkillComponent {
   @Input()form: FormGroup;
   @Input()skillFormArray: FormArray;
   @Output()addSkill = new EventEmitter();
@@ -27,9 +27,5 @@ export class EmpSkillComponent implements OnInit {
   constructor(public empDetailsService: EmpDetailsService) {
 
   }
-
-  ngOnInit(): void {
-  }
-
 
 }

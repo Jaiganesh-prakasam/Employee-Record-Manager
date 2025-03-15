@@ -1,20 +1,17 @@
-import { Component, OnInit, Input, AfterViewInit } from '@angular/core';
+import { Component, Input, AfterViewInit } from '@angular/core';
 import { IWizardService } from './i-wizard.service';
 @Component({
-  // tslint:disable-next-line: component-selector
+  // eslint-disable-next-line @angular-eslint/component-selector
   selector: 'i-wizard',
   templateUrl: './i-wizard.component.html',
   styleUrls: ['./i-wizard.component.scss'],
   providers: [IWizardService]
 })
-export class IWizardComponent implements OnInit, AfterViewInit {
+export class IWizardComponent implements AfterViewInit {
   @Input() selectedStep: string;
   @Input() tabData: any[];
   constructor(public iWizardService: IWizardService) { }
 
-  ngOnInit(): void {
-
-  }
   ngAfterViewInit(): void {
     this.wizardNavSelector(this.selectedStep);
   }

@@ -1,6 +1,5 @@
 import {
   Component,
-  OnInit,
   Input,
   AfterViewInit,
   Output,
@@ -13,7 +12,7 @@ import { ITableSharedFunctionService } from '../i-table-shared-function.service'
   templateUrl: './pagination-container.component.html',
   styleUrls: ['./pagination-container.component.scss']
 })
-export class PaginationContainerComponent implements OnInit, AfterViewInit {
+export class PaginationContainerComponent implements AfterViewInit {
   @Input()totalRecordsSize: number;
   @Input()numberOfRows: string;
   @Output()itemFromTo = new EventEmitter();
@@ -24,9 +23,6 @@ export class PaginationContainerComponent implements OnInit, AfterViewInit {
   constructor(public iTableSharedFunctionService: ITableSharedFunctionService) {
    }
 
-  ngOnInit(): void {
-
-  }
   ngAfterViewInit(): void {
     (document.getElementById(this.iTableSharedFunctionService.uuid + '-rows') as HTMLInputElement).value = this.numberOfRows;
     this.valueChanged(this.numberOfRows);
