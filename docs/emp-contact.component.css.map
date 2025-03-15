@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/emp-details/emp-contact/emp-contact.component.scss"],
+  "sourcesContent": [".social-info {\n  border: solid black 1px;\n  margin: 4px;\n  padding: 4px;\n  border-radius: 10px;\n}\n.button-container {\n  display: flex;\n  justify-content: flex-end;\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,UAAA,MAAA,MAAA;AACA,UAAA;AACA,WAAA;AACA,iBAAA;;AAEF,CAAA;AACE,WAAA;AACA,mBAAA;;",
+  "names": []
+}

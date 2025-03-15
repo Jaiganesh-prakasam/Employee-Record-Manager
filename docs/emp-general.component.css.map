@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/emp-details/emp-general/emp-general.component.scss"],
+  "sourcesContent": ["\n.text-container{\n  width: 100%;\n  padding: 12px 20px;\n  min-height: 40px;\n  margin: 8px 0;\n  display: inline-block;\n  border: 1px solid #ccc;\n  border-radius: 4px;\n  box-sizing: border-box;\n}\n"],
+  "mappings": ";AACA,CAAA;AACE,SAAA;AACA,WAAA,KAAA;AACA,cAAA;AACA,UAAA,IAAA;AACA,WAAA;AACA,UAAA,IAAA,MAAA;AACA,iBAAA;AACA,cAAA;;",
+  "names": []
+}

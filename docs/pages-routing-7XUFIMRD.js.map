@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/pages/pages-routing.ts"],
+  "sourcesContent": ["import { Routes } from '@angular/router';\n\nexport const PageRoutes: Routes = [\n  {\n    path: '',\n    redirectTo: 'emp-list',\n    pathMatch: 'full'\n  },\n  {\n    path: 'emp-list',\n    loadComponent: () =>\n    import('./emp-list/emp-list.component').then(\n      (m: any) => m.EmpListComponent\n    )\n  },\n  {\n    path: 'emp-details',\n    loadComponent:  () =>\n    import('./emp-details/emp-details.component').then(\n      (m: any) => m.EmpDetailsComponent\n    )\n  },\n];\n"],
+  "mappings": ";;;AAEO,IAAM,aAAqB;EAChC;IACE,MAAM;IACN,YAAY;IACZ,WAAW;;EAEb;IACE,MAAM;IACN,eAAe,MACf,OAAO,kCAA+B,EAAE,KACtC,CAAC,MAAW,EAAE,gBAAgB;;EAGlC;IACE,MAAM;IACN,eAAgB,MAChB,OAAO,qCAAqC,EAAE,KAC5C,CAAC,MAAW,EAAE,mBAAmB;;;",
+  "names": []
+}
