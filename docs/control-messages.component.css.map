@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/generic/control-messages/control-messages.component.scss"],
+  "sourcesContent": [".form-error {\n  color: red;\n  margin: 4px;\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,SAAA;AACA,UAAA;;",
+  "names": []
+}

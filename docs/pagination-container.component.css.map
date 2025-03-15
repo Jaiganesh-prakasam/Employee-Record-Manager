@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": ["src/app/generic/i-table/pagination-container/pagination-container.component.scss"],
+  "sourcesContent": [".container {\n  margin: 4px;\n  display: flex;\n  section {\n    width: 95%;\n    margin: 2px;\n  }\n}\n.pagination {\n  display: flex;\n  justify-content: flex-end;\n  margin-top: 4px;\n\tdiv {\n    border: solid 1px black;\n\t\tcolor: black;\n\t\tfloat: left;\n\t\tpadding: 8px 16px;\n    text-decoration: none;\n\t\t&.active {\n\t\t\tbackground-color: #4CAF50;\n\t\t\tcolor: white;\n\t\t}\n\t\t&:hover {\n\t\t\t&:not(.active) {\n\t\t\t\tbackground-color: #ddd;\n\t\t\t}\n\t\t}\n\t}\n}\n"],
+  "mappings": ";AAAA,CAAA;AACE,UAAA;AACA,WAAA;;AACA,CAHF,UAGE;AACE,SAAA;AACA,UAAA;;AAGJ,CAAA;AACE,WAAA;AACA,mBAAA;AACA,cAAA;;AACD,CAJD,WAIC;AACG,UAAA,MAAA,IAAA;AACF,SAAA;AACA,SAAA;AACA,WAAA,IAAA;AACE,mBAAA;;AACF,CAVF,WAUE,GAAA,CAAA;AACC,oBAAA;AACA,SAAA;;AAGA,CAfH,WAeG,GAAA,MAAA,KAAA,CALD;AAME,oBAAA;;",
+  "names": []
+}
