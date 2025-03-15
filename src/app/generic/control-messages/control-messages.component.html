@@ -1,3 +1,5 @@
-<div class="form-error" *ngFor="let key of errors">
+@for (key of errors; track $index) {
+<div class="form-error">
   {{validationService.getValidatorErrorMessage(key, this.errorObject[key])}}
 </div>
+}

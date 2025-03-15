@@ -17,7 +17,7 @@
   </label>
   <div class="text-container">
     {{
-      form.value.firstName + ' ' + form.value.lastName
+    form.value.firstName + ' ' + form.value.lastName
     }}
   </div>
   <label>
@@ -25,15 +25,17 @@
   </label>
   <input type="date" formControlName="dob">
   <control-messages [control]="form.get('dob')"></control-messages>
-  <div *ngIf="form.get('dob').valid">
+  @if (form.get('dob').valid) {
+  <div>
     <label>
       age
     </label>
     <div class="text-container">
       {{
-        ageCalculation(form.value.dob)
+      ageCalculation(form.value.dob)
       }}
     </div>
   </div>
+  }
 
 </form>

@@ -16,8 +16,9 @@
     <div style="margin-bottom:8px">
       Social Information:
     </div>
-    <section  *ngFor="let _ of socialInfoFormArray.controls; index as i" class="social-info">
-      <ng-container [formGroupName]="i"  >
+    @for (_ of socialInfoFormArray.controls; track $index; let i = $index) {
+    <section class="social-info">
+      <ng-container [formGroupName]="i">
         <label>
           Url:
         </label>
@@ -30,9 +31,12 @@
         <control-messages [control]="socialInfoFormArray.controls[i].get('type')"></control-messages>
       </ng-container>
       <div class="button-container">
-        <button *ngIf="socialInfoFormArray.controls.length > 1" (click)="deleteSocialInfo.emit(i)">remove</button>
+        @if (socialInfoFormArray.controls.length > 1) {
+        <button (click)="deleteSocialInfo.emit(i)">remove</button>
+        }
       </div>
     </section>
+    }
     <div class="button-container">
       <button (click)="addSocialInfo.emit()">Add social information</button>
     </div>

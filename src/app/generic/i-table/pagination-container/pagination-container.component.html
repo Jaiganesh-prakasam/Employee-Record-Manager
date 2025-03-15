@@ -1,10 +1,10 @@
 <div class="container">
   <section>
     <label>Search:</label>
-    <input #input type="text" (keyup)="searchFilter([input.value, numberOfRows])" >
+    <input #input type="text" (keyup)="searchFilter([input.value, numberOfRows])">
   </section>
   <section>
-  <label>Number of records:</label>
+    <label>Number of records:</label>
     <select name="rows" id="{{ iTableSharedFunctionService.uuid }}-rows" (change)="valueChanged($event.target.value)">
       <option value=5>5</option>
       <option value=10>10</option>
@@ -15,30 +15,42 @@
 </div>
 <ng-content></ng-content>
 <div class="container-bottom">
-  <nav class="pagination" *ngIf="totalDivisions && totalDivisions.length> 0">
-    <div (click)="jumpToFirst()" >&laquo;</div>
+  @if (totalDivisions && totalDivisions.length> 0) {
+  <nav class="pagination">
+    <div (click)="jumpToFirst()">&laquo;</div>
     <div (click)="previous()">&#8249;</div>
     <!-- first button on selecting last page -->
-    <ng-container *ngFor="let division of totalDivisions;let i = index">
-      <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" *ngIf="pageNumberSelected && pageNumberSelected === totalDivisions.length && pageNumberSelected - 3  ===  i" (click)="jumToThisPage(i+1)" >{{i +1}}</div>
-    </ng-container>
+    @for (division of totalDivisions; track $index; let i = $index) {
+    @if (pageNumberSelected && pageNumberSelected === totalDivisions.length && pageNumberSelected - 3 === i) {
+    <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" (click)="jumToThisPage(i+1)">{{i +1}}</div>
+    }
+    }
     <!-- first button on selecting any other page but the last one -->
-    <ng-container *ngFor="let division of totalDivisions;let i = index">
-      <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" *ngIf="pageNumberSelected && pageNumberSelected !== 1  && (pageNumberSelected - 2 ===  i ) " (click)="jumToThisPage(i+1)" >{{i +1}}</div>
-    </ng-container>
+    @for (division of totalDivisions; track $index; let i = $index) {
+    @if (pageNumberSelected && pageNumberSelected !== 1 && (pageNumberSelected - 2 === i )) {
+    <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" (click)="jumToThisPage(i+1)">{{i +1}}</div>
+    }
+    }
     <!-- always the selected page -->
-    <ng-container *ngFor="let division of totalDivisions ;let i = index">
-      <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" *ngIf="pageNumberSelected && pageNumberSelected ===  i+1" (click)="jumToThisPage(i+1)" >{{i +1}}</div>
-    </ng-container>
+    @for (division of totalDivisions; track $index; let i = $index) {
+    @if (pageNumberSelected && pageNumberSelected === i+1) {
+    <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" (click)="jumToThisPage(i+1)">{{i +1}}</div>
+    }
+    }
     <!-- last button on selecting any other page but the first page -->
-    <ng-container *ngFor="let division of totalDivisions;let i = index">
-      <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" *ngIf="pageNumberSelected && pageNumberSelected !== totalDivisions.length && pageNumberSelected + 1 ===  i+1" (click)="jumToThisPage(i+1)" >{{i +1}}</div>
-    </ng-container>
+    @for (division of totalDivisions; track $index; let i = $index) {
+    @if (pageNumberSelected && pageNumberSelected !== totalDivisions.length && pageNumberSelected + 1 === i+1) {
+    <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" (click)="jumToThisPage(i+1)">{{i +1}}</div>
+    }
+    }
     <!-- last button on selecting first page -->
-    <ng-container *ngFor="let division of totalDivisions;let i = index">
-      <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" *ngIf="pageNumberSelected && pageNumberSelected === 1  && (pageNumberSelected + 2 ===  i+1 ) " (click)="jumToThisPage(i+1)" >{{i +1}}</div>
-    </ng-container>
+    @for (division of totalDivisions; track $index; let i = $index) {
+    @if (pageNumberSelected && pageNumberSelected === 1 && (pageNumberSelected + 2 === i+1 )) {
+    <div id="{{ iTableSharedFunctionService.uuid }}-{{i+1}}" (click)="jumToThisPage(i+1)">{{i +1}}</div>
+    }
+    }
     <div (click)="next()">&#8250;</div>
     <div (click)="jumpToLast()">&raquo;</div>
   </nav>
+  }
 </div>
