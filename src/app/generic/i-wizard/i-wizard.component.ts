@@ -1,5 +1,4 @@
 import { Component, Input, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
-import { IWizardService } from './i-wizard.service';
 import { IWizardStepsComponent } from './i-wizard-steps/i-wizard-steps.component';
 import { CommonModule } from '@angular/common';
 import { WizardStepDirective } from './i-wizard-step.directive';
@@ -9,14 +8,12 @@ import { WizardStepDirective } from './i-wizard-step.directive';
     templateUrl: './i-wizard.component.html',
     styleUrls: ['./i-wizard.component.scss'],
     imports: [IWizardStepsComponent, CommonModule],
-    providers: [IWizardService],
     standalone: true
 })
 export class IWizardComponent implements AfterContentInit {
   @Input() tabData: any[];
   @ContentChildren(WizardStepDirective) stepTemplates!: QueryList<WizardStepDirective>;
   currentStep = 0;
-  constructor(public iWizardService: IWizardService) { }
 
   ngAfterContentInit(): void {
     if (this.tabData.length !== this.stepTemplates.length) {
