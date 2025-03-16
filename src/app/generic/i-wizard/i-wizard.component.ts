@@ -39,7 +39,7 @@ export class IWizardComponent implements AfterContentInit {
   }
 
   stepValidityChecker(toStepId: number): void {
-    for (let i = this.currentStep; i <= toStepId; i++) {
+    for (let i = this.currentStep; i <= toStepId -1; i++) {
       if(!this.isStepValid(i)) {
         console.error(`Step ${i} is invalid. Cannot proceed to step ${toStepId}.`);
         return;
