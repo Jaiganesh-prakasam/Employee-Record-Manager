@@ -7,6 +7,7 @@ import { EmpSkillComponent } from './emp-skill/emp-skill.component';
 import { EmpContactComponent } from './emp-contact/emp-contact.component';
 import { EmpGeneralComponent } from './emp-general/emp-general.component';
 import { IWizardComponent } from 'src/app/generic/i-wizard/i-wizard.component';
+import { WizardStepDirective } from 'src/app/generic/i-wizard/i-wizard-step.directive';
 @Component({
     selector: 'app-emp-details',
     templateUrl: './emp-details.component.html',
@@ -17,6 +18,7 @@ import { IWizardComponent } from 'src/app/generic/i-wizard/i-wizard.component';
       EmpSkillComponent,
       EmpExperienceComponent,
       IWizardComponent,
+      WizardStepDirective
     ],
     providers: [EmpDetailsService],
     standalone: true
@@ -45,12 +47,10 @@ export class EmpDetailsComponent implements OnInit {
   }
   stepsData = [
     {
-      id: 'step1',
       title: 'Employee General Details',
       formValidation: [this.empGeneralFormGroup]
     },
     {
-      id: 'step2',
       title: 'Contact',
       formValidation: [
         this.empContactFormGroup.get('email'),
@@ -59,12 +59,10 @@ export class EmpDetailsComponent implements OnInit {
       ]
     },
     {
-      id: 'step3',
       title: 'Experience',
       formValidation: [this.empExperienceFormArray]
     },
     {
-      id: 'step4',
       title: 'Skills',
       formValidation: [this.empSkillFormArray]
     }
