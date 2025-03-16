@@ -1,101 +1,59 @@
-import { Component, Input, AfterViewInit } from '@angular/core';
-import { IWizardService } from './i-wizard.service';
+import { Component, Input, ContentChildren, QueryList, AfterContentInit } from '@angular/core';
 import { IWizardStepsComponent } from './i-wizard-steps/i-wizard-steps.component';
 import { CommonModule } from '@angular/common';
+import { WizardStepDirective } from './i-wizard-step.directive';
 @Component({
     // eslint-disable-next-line @angular-eslint/component-selector
     selector: 'i-wizard',
     templateUrl: './i-wizard.component.html',
     styleUrls: ['./i-wizard.component.scss'],
     imports: [IWizardStepsComponent, CommonModule],
-    providers: [IWizardService],
     standalone: true
 })
-export class IWizardComponent implements AfterViewInit {
-  @Input() selectedStep: string;
+export class IWizardComponent implements AfterContentInit {
   @Input() tabData: any[];
-  constructor(public iWizardService: IWizardService) { }
+  @ContentChildren(WizardStepDirective) stepTemplates!: QueryList<WizardStepDirective>;
+  currentStep = 0;
 
-  ngAfterViewInit(): void {
-    this.wizardNavSelector(this.selectedStep);
-  }
-  wizardNavSelector(selectedStep: string): void {
-    this.selectedStep = selectedStep;
-    let buttonSelected = false;
-    for ( const i of this.tabData) {
-      const contentElement = document.getElementById(i.id);
-      const navElement = document.getElementById( this.iWizardService.uuid + '-nav-' + i.id);
-      const buttonElement = document.getElementById(this.iWizardService.uuid + '-button-' + i.id);
-      if (i.id === selectedStep) {
-        contentElement.style.display = 'block';
-        buttonElement.style.display = 'block';
-        navElement.classList.remove('actual-dot-incomplete');
-        navElement.classList.add('actual-dot-complete');
-        navElement.scrollIntoView();
-        buttonSelected = true;
-        continue;
-      } else {
-        contentElement.style.display = 'none';
-        buttonElement.style.display = 'none';
-      }
-      if (buttonSelected) {
-        navElement.classList.remove('actual-dot-complete');
-        navElement.classList.add('actual-dot-incomplete');
-      } else {
-        navElement.classList.remove('actual-dot-incomplete');
-        navElement.classList.add('actual-dot-complete');
-      }
+  ngAfterContentInit(): void {
+    if (this.tabData.length !== this.stepTemplates.length) {
+      throw new Error('The number of steps must match the number of step templates.');
     }
-    document.getElementById(this.iWizardService.uuid + '-top-navigation-span').scrollIntoView();
-  }
-  otherStepValidityChecker(toStepId: string): void {
-    const currentPageIndex = this.tabData.findIndex((data) => data.id === this.selectedStep);
-    const toPageIndex = this.tabData.findIndex((data) => data.id === toStepId);
-    // to navigate to some previous page or to the immediate next page
-    if (currentPageIndex > toPageIndex || (currentPageIndex + 1 === toPageIndex)) {
-      this.wizardNavSelector(toStepId);
-    }
-    // to navigate to some other page
-    else if (currentPageIndex < toPageIndex) {
-      let totalStepsCount = 0;
-      let validStepsCount = 0;
-      //  all the step in between should be valid
-      for ( let i = currentPageIndex + 1; i < toPageIndex; i++) {
-        totalStepsCount ++;
-        const validityArray = this.tabData[i].formValidation;
-        const checkValidity = validityArray
-        .filter((formGroupOrControlOrArray) => formGroupOrControlOrArray.valid);
-        if (checkValidity.length === validityArray.length) {
-          validStepsCount ++;
-        }
-      }
-      // navigate to selected step if all the pages in between are valid
-      if (totalStepsCount === validStepsCount) {
-        this.wizardNavSelector(toStepId);
-      }
-    }
-  }
-  currentStepValidityChecker(toStepId: string): void {
-    const element = this.tabData.filter((data) => data.id === this.selectedStep);
-    const validityArray = element[0].formValidation;
-    // to return true as default when no validation needed
-    if (!validityArray) {
-      this.wizardNavSelector(toStepId);
-    } else {
-      const checkValidity = validityArray
-        .filter((formGroupOrControlOrArray) => formGroupOrControlOrArray.valid);
-      if (checkValidity.length === validityArray.length) {
-        this.otherStepValidityChecker(toStepId);
-      }
-    }
+    this.tabData.forEach((step, index) => {
+      step.template = this.stepTemplates.toArray()[index].template;
+    });
   }
 
-  nextWizard(selectedStep: string): void {
-    const index = this.tabData.findIndex((x) => x.id === selectedStep);
-    this.wizardNavSelector(this.tabData[index + 1].id);
+  // Check if the current step's form is valid
+  isStepValid(toStepId: number): boolean {
+    const step = this.tabData[toStepId];
+    // if no validation required
+    if (!step.formValidation) {
+      return true;
+    }
+    // Check if any form in the step is invalid
+    const hasInvalidForm = step.formValidation.some((form) => !form.valid);
+
+    // Return true if all forms are valid, false otherwise
+    return !hasInvalidForm;
   }
-  previousWizard(selectedStep: string): void {
-    const index = this.tabData.findIndex((x) => x.id === selectedStep);
-    this.wizardNavSelector(this.tabData[index - 1].id);
+
+  stepValidityChecker(toStepId: number): void {
+    for (let i = this.currentStep; i <= toStepId -1; i++) {
+      if(!this.isStepValid(i)) {
+        console.error(`Step ${i} is invalid. Cannot proceed to step ${toStepId}.`);
+        return;
+      }
+    }
+    // If all steps are valid, update the current step
+    this.currentStep = toStepId;
+    console.log(`Moved to step ${toStepId}.`);
+  }
+
+  nextWizard(): void {
+    this.currentStep++;
+  }
+  previousWizard(): void {
+    this.currentStep--;
   }
 }

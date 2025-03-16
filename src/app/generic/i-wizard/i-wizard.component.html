@@ -1,27 +1,24 @@
 <div style="max-height: 400px;min-height: 400px; overflow: auto;">
-  <span id="{{iWizardService.uuid}}-top-navigation-span"></span>
-  <ng-content></ng-content>
+  <ng-container *ngTemplateOutlet="tabData[currentStep].template"></ng-container>
 </div>
 <section style="min-width:100%; display: flex; justify-content: flex-end;">
-  @for (i of tabData; track i; let first = $first; let last = $last) {
-  <i-wizard-steps id="{{iWizardService.uuid}}-button-{{ i.id }}" (next)="nextWizard(i.id)"
-    (previous)="previousWizard(i.id)" [stepName]="i.id" [validity]="i.formValidation" [isFirst]="first"
-    [isLast]="last" />
-  }
+  <i-wizard-steps (next)="nextWizard()" (previous)="previousWizard()" [stepName]="currentStep"
+    [validity]="tabData[currentStep].formValidation" [isFirst]="currentStep === 0"
+    [isLast]="currentStep === tabData.length -1" />
 </section>
 <div class="dot">
-  @for (i of tabData; track $index) {
+  @for (i of tabData; track $index; let num = $index) {
   <div [ngClass]="{
         'one-step' : tabData.length === 1,
         'two-steps' : tabData.length === 2,
         'three-steps' : tabData.length === 3,
         'four-steps' : tabData.length === 4,
-        'more-steps' : tabData.length > 4
-      }" (click)="currentStepValidityChecker(i.id)">
-    <div id="{{iWizardService.uuid}}-nav-{{ i.id }}">
-      <div>
-        {{i.title}}
-      </div>
+        'more-steps' : tabData.length > 4,
+        'actual-dot-complete': num <= currentStep,
+        'actual-dot-incomplete': num > currentStep,
+      }" (click)="stepValidityChecker(num)">
+    <div>
+      {{i.title}}
     </div>
   </div>
   }
